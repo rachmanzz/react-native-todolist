@@ -25,8 +25,8 @@ check this issue https://github.com/oblador/react-native-vector-icons/issues/965
 
 another example image, check in this link https://github.com/rachmanzz/react-native-todolist/tree/main/example
 
-android application: t.ly/7xRe
-ios: - (please run debug from resources)
+- android application: t.ly/7xRe
+- ios: - (please run debug from resources)
 
 
 
