@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { Text, StyleSheet, View, TouchableOpacity, TouchableWithoutFeedback, Alert, Platform, UIManager } from "react-native";
+import { Text, StyleSheet, View, TouchableOpacity, TouchableWithoutFeedback, Alert, Platform, UIManager, LayoutAnimation, ScrollView } from "react-native";
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import IconFontAws from 'react-native-vector-icons/FontAwesome5'
 import AnimatedAddTask from "../components/AnimatedAddTask";
@@ -58,6 +58,7 @@ export default function HomeScreen () {
         setList(cloneList)
     }
     const sorting = () => {
+        LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut)
         return [...list].map( (content: listProps, index: number) => ({indexKey: index, content}) ).sort((a, b) => sort === 'asc' ? a.indexKey-b.indexKey : b.indexKey-a.indexKey).map( ({content}: {content: listProps}) => (content) )
     }
 
@@ -111,37 +112,39 @@ export default function HomeScreen () {
                     {sort === "asc" ? <IconFontAws name="sort-numeric-down" style={{marginLeft: 10}} size={18}/> : <IconFontAws style={{marginLeft: 10}} name="sort-numeric-down-alt" size={18}/>}
                     </TouchableOpacity>
                 </View>
-                <View style={styles.simpleCard}>
-                    {sort === "desc" && <AddTaskButton />}
-                    {list.map( ({itemText, mark, hideMenu}: listProps, keyIndex: number) => (
-                        <React.Fragment key={keyIndex}>
-                            
-                                <View style={{flexDirection: "row", marginBottom: 10, marginTop: keyIndex === 0 ? 10 : 0, alignItems: 'center'}}>
-                                    <View style={{width: 24}}>
-                                        <TouchableWithoutFeedback onPress={handleMarking(keyIndex, !mark)}>
-                                            <View style={[
-                                                styles.markCircle,
-                                                {backgroundColor: mark ? "#149BFD": "#FFFFFF"}
-                                            ]}/>
+                <ScrollView>
+                    <View style={styles.simpleCard}>
+                        {sort === "desc" && <AddTaskButton />}
+                        {list.map( ({itemText, mark, hideMenu}: listProps, keyIndex: number) => (
+                            <React.Fragment key={keyIndex}>
+                                
+                                    <View style={{flexDirection: "row", marginBottom: 10, marginTop: keyIndex === 0 ? 10 : 0, alignItems: 'center'}}>
+                                        <View style={{width: 24}}>
+                                            <TouchableWithoutFeedback onPress={handleMarking(keyIndex, !mark)}>
+                                                <View style={[
+                                                    styles.markCircle,
+                                                    {backgroundColor: mark ? "#149BFD": "#FFFFFF"}
+                                                ]}/>
 
-                                        </TouchableWithoutFeedback>
+                                            </TouchableWithoutFeedback>
+                                        </View>
+                                        <View style={{marginLeft: 10, borderBottomWidth: 1, borderBottomColor: "#E5E5E5", paddingBottom: 7, flexGrow: 1, flexDirection: "row", justifyContent: "space-between", alignItems: 'center'}}>
+                                            <Text style={[
+                                                styles.defaultInnerText,
+                                                mark ? { color: "#717171", textDecorationLine: 'line-through', textDecorationStyle: 'solid' } : { color: "#717171" }
+                                            ]}>{itemText}</Text>
+                                            <TouchableOpacity onPress={handlingDeleteItem(keyIndex)}>
+                                                <View style={{paddingLeft: 5, paddingRight: 5}}>
+                                                    <Icon name="delete" size={20} color="red" />
+                                                </View>
+                                            </TouchableOpacity>
+                                        </View>
                                     </View>
-                                    <View style={{marginLeft: 10, borderBottomWidth: 1, borderBottomColor: "#E5E5E5", paddingBottom: 7, flexGrow: 1, flexDirection: "row", justifyContent: "space-between", alignItems: 'center'}}>
-                                        <Text style={[
-                                            styles.defaultInnerText,
-                                            mark ? { color: "#717171", textDecorationLine: 'line-through', textDecorationStyle: 'solid' } : { color: "#717171" }
-                                        ]}>{itemText}</Text>
-                                        <TouchableOpacity onPress={handlingDeleteItem(keyIndex)}>
-                                            <View style={{paddingLeft: 5, paddingRight: 5}}>
-                                                <Icon name="delete" size={20} color="red" />
-                                            </View>
-                                        </TouchableOpacity>
-                                    </View>
-                                </View>
-                        </React.Fragment>
-                    ) )}
-                    {sort === "asc" && <AddTaskButton />}
-                </View>
+                            </React.Fragment>
+                        ) )}
+                        {sort === "asc" && <AddTaskButton />}
+                    </View>
+                </ScrollView>
             </View>
             <AnimatedAddTask isOpen={inputOpen} onCreate={whenTaskOnCreate} onClose={() => {setInputOpen(false)}} />
         </React.Fragment>
