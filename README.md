@@ -14,3 +14,22 @@ Another solution:
 
 
 check this issue https://github.com/oblador/react-native-vector-icons/issues/965#issuecomment-547649424
+
+
+
+## Build Result
+
+| Android      | IOS |
+| ----------- | ----------- |
+| <img src="./example/android/img-3.jpg" alt="Markdown Monster icon" style="float: left; width: 200px" />      | <img src="./example/ios/img-1.png" alt="Markdown Monster icon" style="float: left; width: 200px" />        |
+
+
+
+
+## Next Plan
+
+- Add Database, maybe I'll use firebase (Cloud Firestore) as database
+- Improve functional application
+- etc
+
+
