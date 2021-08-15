@@ -1,5 +1,9 @@
 import React, {useRef, useEffect} from "react";
 import { StyleSheet, View, Text, Animated, ViewStyle } from "react-native";
+import { StackScreenProps } from '@react-navigation/stack';
+import { RoutersParamList } from "../routesProps";
+
+type Props = StackScreenProps<RoutersParamList, 'SplashScreen'>
 
 const styles = StyleSheet.create({
     container: {
@@ -14,7 +18,7 @@ const styles = StyleSheet.create({
     }
 })
 
-export default function SlashScreen () {
+export default function SlashScreen ({navigation}: Props) {
     const textOpacity = useRef(new Animated.Value(0)).current
     useEffect(() => {
         Animated.timing(
@@ -25,6 +29,9 @@ export default function SlashScreen () {
                 useNativeDriver: true
             }
         ).start()
+
+        setTimeout(()=> navigation.replace("HomeScreen"), 3000)
+
     }, [textOpacity])
     return (
         <View style={styles.container}>

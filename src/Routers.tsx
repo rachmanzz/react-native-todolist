@@ -5,12 +5,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import SplashScreen from './screen/SplashScreen';
 import HomeScreen from './screen/HomeScreen';
+import { RoutersParamList } from './routesProps';
 
 
-export type RoutersParamList = {
-    SplashScreen: undefined,
-    HomeScreen: undefined
-}
+
 
 
 
