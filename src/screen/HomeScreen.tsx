@@ -107,7 +107,7 @@ export default function HomeScreen () {
         <React.Fragment>
             <View style={styles.container}>
                 <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
-                    <Text style={{fontFamily: "Roboto-Black", fontSize: 20, color: "#5F5F5F"}}>TODO LIST</Text>
+                    <Text style={{fontFamily: "Roboto-Black", fontSize: 20, color: "#5F5F5F"}}>TODOLIST</Text>
                     <TouchableOpacity onPress={handlingSort}>
                     {sort === "asc" ? <IconFontAws name="sort-numeric-down" style={{marginLeft: 10}} size={18}/> : <IconFontAws style={{marginLeft: 10}} name="sort-numeric-down-alt" size={18}/>}
                     </TouchableOpacity>
