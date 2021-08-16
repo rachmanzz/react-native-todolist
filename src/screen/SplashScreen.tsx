@@ -37,9 +37,7 @@ export default function SlashScreen ({navigation}: Props) {
 
     }, [textOpacity])
     return (
-        <Animated.View style={[
-            styles.container
-            ]}>
+        <View style={styles.container}>
             <Animated.Text style={[
                 styles.title,
                 {
@@ -47,6 +45,6 @@ export default function SlashScreen ({navigation}: Props) {
                     color: color
                 }
             ]}>TODOLIST</Animated.Text>
-        </Animated.View>
+        </View>
     )
 }
