@@ -27,7 +27,7 @@ const IosRouteSafe = () => (
 const AndroidRouteSafe = () => (
   <React.Fragment>
     <StatusBar backgroundColor={backgroundColor} barStyle="light-content" networkActivityIndicatorVisible={false}/>
-    <SafeAreaView style={{flex:1}}>
+    <SafeAreaView style={{flex:1, backgroundColor: backgroundColor}}>
       <Routers />
     </SafeAreaView>
   </React.Fragment>
