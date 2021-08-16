@@ -13,34 +13,40 @@ const styles = StyleSheet.create({
     },
     title: {
         fontFamily: "Roboto-Black",
-        fontSize: 26,
-        color: "#5F5F5F"
+        fontSize: 26
     }
 })
 
 export default function SlashScreen ({navigation}: Props) {
     const textOpacity = useRef(new Animated.Value(0)).current
+    const color = textOpacity.interpolate({
+        inputRange: [0, 1],
+        outputRange: ["#5F5F5F", "#0967AB"]
+    })
     useEffect(() => {
         Animated.timing(
             textOpacity,
             {
                 toValue: 1,
-                duration: 2000,
-                useNativeDriver: true
+                duration: 4000,
+                useNativeDriver: false
             }
         ).start()
 
-        setTimeout(()=> navigation.replace("HomeScreen"), 3000)
+        setTimeout(()=> navigation.replace("HomeScreen"), 6000)
 
     }, [textOpacity])
     return (
-        <View style={styles.container}>
+        <Animated.View style={[
+            styles.container
+            ]}>
             <Animated.Text style={[
                 styles.title,
                 {
-                    opacity: textOpacity
+                    opacity: textOpacity,
+                    color: color
                 }
             ]}>TODOLIST</Animated.Text>
-        </View>
+        </Animated.View>
     )
 }
